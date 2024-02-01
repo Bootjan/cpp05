@@ -6,11 +6,12 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/16 22:49:56 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/18 15:43:07 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/18 16:03:11 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 // #############################################################################
 //			CON/DE STRUCTORS
@@ -78,4 +79,18 @@ void	Bureaucrat::Demotion( void )
 		throw GradeTooLowException();
 	_grade++;
 	std::cout << this->getName() << " was demoted to grade " << _grade << std::endl;
+}
+
+void	Bureaucrat::signForm( Form& form ) const
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout	<< _name << " signed '"
+					<< form.getName() << "'" << std::endl;
+	}
+	catch(const Form::ExecuteException &err)
+	{
+		std::cerr << err.what() << std::endl;
+	}
 }

@@ -5,27 +5,30 @@
 /*                                                     +:+                    */
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/16 22:51:25 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/18 15:47:10 by bschaafs      ########   odam.nl         */
+/*   Created: 2024/01/17 12:21:28 by bschaafs      #+#    #+#                 */
+/*   Updated: 2024/01/18 16:38:04 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int	main()
 {
-	Bureaucrat*	john;
-	try
-	{
-		john = new Bureaucrat("John", 1);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	Intern someRandomIntern;
 	Bureaucrat	edward("Edward", 1);
-	std::cout << *john << std::endl;
-	std::cout << edward << std::endl;
-	edward.Promotion();
-	edward.Demotion();
+	AForm* rrf;
+	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	if (!rrf)
+		return 1;
+	std::cout << *rrf << std::endl;
+	edward.executeForm(*rrf);
+	edward.signForm(*rrf);
+	edward.executeForm(*rrf);
+	delete rrf;
+	return 0;
 }

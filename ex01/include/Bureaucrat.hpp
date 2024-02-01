@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/16 22:45:54 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/18 15:45:26 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/18 16:04:38 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
+
+class Form;
 
 class Bureaucrat
 {
@@ -28,26 +30,21 @@ class Bureaucrat
 		int					getGrade( void ) const;
 		void	Promotion( void );
 		void	Demotion( void );
+		void	signForm( Form& form ) const;
 
 		struct ExecuteException : public std::runtime_error
 		{
-			ExecuteException(const std::string &message) : std::runtime_error(message)
-			{
-			}
+			ExecuteException(const std::string &message) : std::runtime_error(message) {}
 		};
 
 		struct GradeTooLowException : public ExecuteException
 		{
-			GradeTooLowException() : ExecuteException("Grade too low")
-			{
-			}
+			GradeTooLowException() : ExecuteException("Grade too low") {}
 		};
 
 		struct GradeTooHighException : public ExecuteException
 		{
-			GradeTooHighException() : ExecuteException("Grade too high")
-			{
-			}
+			GradeTooHighException() : ExecuteException("Grade too high") {}
 		};
 };
 

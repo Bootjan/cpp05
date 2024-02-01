@@ -3,29 +3,33 @@
 /*                                                        ::::::::            */
 /*   main.cpp                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: bootjan <bootjan@student.42.fr>              +#+                     */
+/*   By: bschaafs <bschaafs@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/16 22:51:25 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/18 15:47:10 by bschaafs      ########   odam.nl         */
+/*   Created: 2024/01/17 12:21:28 by bschaafs      #+#    #+#                 */
+/*   Updated: 2024/01/18 16:09:43 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 
 int	main()
 {
-	Bureaucrat*	john;
+	Bureaucrat	edward("Edward", 5);
+	Form		contract("Contract for new pipeline", 4, 2);
+	std::cout << contract << std::endl;
+	std::cout << edward << std::endl;
+	edward.signForm(contract);
+	edward.Promotion();
+	contract.beSigned(edward);
+	std::cout << contract << std::endl;
 	try
 	{
-		john = new Bureaucrat("John", 1);
+		contract.beSigned(edward);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	Bureaucrat	edward("Edward", 1);
-	std::cout << *john << std::endl;
-	std::cout << edward << std::endl;
-	edward.Promotion();
-	edward.Demotion();
+	return 0;
 }
